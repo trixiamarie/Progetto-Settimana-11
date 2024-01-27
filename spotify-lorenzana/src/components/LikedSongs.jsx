@@ -11,7 +11,7 @@ export default function LikedSongs(){
     return(
         <>
         <Container className='ContainerAlbum mt-5'>
-        <h2 className=' '>Your Library</h2>
+        <h2>Your Library</h2>
       {dati.map((x,index) => <SongCard song={x} key={index}/>)}
       </Container>
       </>
