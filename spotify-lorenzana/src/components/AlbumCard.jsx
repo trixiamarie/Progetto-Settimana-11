@@ -6,7 +6,7 @@ export default function AlbumCard(props) {
   return (
     <Col key={props.index} className="col text-center">
     <Container style={{height:"20rem", width:"20rem"}}>
-      <Link to={`/album_page.html?id=${props.album.album.id}`}>
+      <Link to={`/albumpage/${props.album.album.id}`}>
         <Image
           className="img-fluid"
           src={props.album.album.cover_medium}

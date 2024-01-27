@@ -4,15 +4,21 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
 import HouseFill from "react-bootstrap-icons/dist/icons/house-fill";
 import BookFill from "react-bootstrap-icons/dist/icons/book-fill";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import SearchResults from "./SearchResults";
+import { useDispatch } from "react-redux";
+import { searchterm } from "../actions/searchResultsAction";
+import { useNavigate } from "react-router-dom";
 
 export default function VerticalSidebar() {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);
   };
 
+  const dispatch = useDispatch()
 
   return (
     <Container className="col-2">
@@ -64,17 +70,21 @@ export default function VerticalSidebar() {
                   className="mb-2"
                   value={searchTerm}
                   onChange={handleInputChange}
-                /><Link to={`/search/${searchTerm}`}>
+                />
                 <Button
                   variant="outline-secondary"
                   id="button-addon2"
                   className="mb-2"
-                >GO</Button></Link>
+                  onClick={() => {dispatch(searchterm(searchTerm)); navigate(`/search/${searchTerm}`)}}
+                >GO</Button>
                 </InputGroup>
                 
               </NavItem>
+              
             </Nav>
           </div>
+            
+          <SearchResults/>
         </Container>
 
         <Container className="nav-btn d-flex flex-column">

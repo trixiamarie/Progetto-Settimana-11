@@ -32,6 +32,8 @@ export default function AlbumRowHomepage(props) {
     }
   };
 
+  console.log(searchResults);
+
   return (
     <div className="row">
       <div className="mt-4">

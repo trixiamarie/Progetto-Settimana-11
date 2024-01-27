@@ -1,12 +1,25 @@
 import React from "react";
 import '../App.css'
 import { Col, Container, ProgressBar, Row } from "react-bootstrap";
+import { useSelector } from "react-redux";
+
 
 export default function PlayerControls() {
+
+  const selectedsong = useSelector(state => state.songclick)
+
   return (
     <Container fluid className="fixed-bottom bg-container pt-1">
       <Row>
-        <Col className="col-lg-10 offset-lg-2">
+      <Col md={{ span: 3, offset: 2 }}>
+          <div>
+            <img src={selectedsong.album.cover_small}/>
+            <p>Title: <span>{selectedsong.title}</span>
+            <br/>Artist: <span>{selectedsong.artist.name}</span></p>
+          </div>
+
+          </Col>
+        <Col md={{ span: 7 }}>
           <Row className="rowPlayer">
             <div
               className="col-6 col-md-4 col-lg-2 offset-1  playerControls mt-1"

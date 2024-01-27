@@ -5,20 +5,22 @@ import { Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { addtofavourites, remove } from '../actions/action';
+import { songclick } from '../actions/SongClickAction';
 
 const SongCard = (props) => {
 
   const dispatch = useDispatch();
 
   const favourite = useSelector(state => state.reducer)
+  const selectedsong = useSelector(state => state.songclick)
+  console.log(selectedsong)
 
   const songs = favourite.find(x => x.title === props.song.title)
-  console.log(songs)
 
   return (
-    <div className="py-3 trackHover">
+    <div className="py-3 trackHover" onClick={() => dispatch(songclick(props.song))}>
     {songs ? <Button onClick={() => dispatch(remove(props.song))} ><HeartFill/></Button> : <Button onClick={() => dispatch(addtofavourites(props.song))} ><Heart/></Button>}
-      <a href="#" className="card-title trackHover px-3" style={{ color: 'white' }}>
+      <a className="card-title trackHover px-3" style={{ color: 'white' }} onClick={() => dispatch(songclick(props.song))}>
         {props.song.title}
       </a>
       <small className="duration" style={{ color: 'white' }}>
