@@ -12,7 +12,7 @@ export default function PlayerControls() {
     <Container fluid className="fixed-bottom bg-container pt-1">
       <Row>
       <Col md={{ span: 3, offset: 2 }}>
-          <div>
+          <div className="d-flex">
             <img src={selectedsong.album.cover_small}/>
             <p>Title: <span>{selectedsong.title}</span>
             <br/>Artist: <span>{selectedsong.artist.name}</span></p>
