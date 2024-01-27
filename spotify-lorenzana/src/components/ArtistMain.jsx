@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Container } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
-import ArtistTracklist from './ArtistTracklist';
-import MainNavbar from './MainNavbar';
-
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { Container } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import ArtistTracklist from "./ArtistTracklist";
+import MainNavbar from "./MainNavbar";
 
 export default function ArtistMain() {
   const [searchResults, setSearchResults] = useState(null);
@@ -16,8 +15,9 @@ export default function ArtistMain() {
         `https://striveschool-api.herokuapp.com/api/deezer/artist/${id}`,
         {
           headers: {
-            'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
-            'X-RapidAPI-Key': '9d408f0366mshab3b0fd8e5ecdf7p1b09f2jsne682a1797fa0',
+            "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+            "X-RapidAPI-Key":
+              "9d408f0366mshab3b0fd8e5ecdf7p1b09f2jsne682a1797fa0",
           },
         }
       );
@@ -25,10 +25,10 @@ export default function ArtistMain() {
       if (response) {
         setSearchResults(response.data);
       } else {
-        console.error('Error: No data received from the API');
+        console.error("Error: No data received from the API");
       }
     } catch (error) {
-      console.error('Error:', error.message);
+      console.error("Error:", error.message);
     }
   };
 
@@ -40,10 +40,17 @@ export default function ArtistMain() {
 
   return (
     <>
-    <MainNavbar/>
-    <Container style={{marginLeft:"30rem"}}>
-    {searchResults !== null ? <ArtistTracklist Artist={searchResults.name} Followers={searchResults.nb_fan}/> : <div>Loading</div>}
-    </Container>
+      <MainNavbar />
+      <Container style={{ marginLeft: "30rem" }}>
+        {searchResults !== null ? (
+          <ArtistTracklist
+            Artist={searchResults.name}
+            Followers={searchResults.nb_fan}
+          />
+        ) : (
+          <div>Loading</div>
+        )}
+      </Container>
     </>
   );
 }
